@@ -10,11 +10,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
+        {/*<header className="App-header">
           <Link to="/">Test</Link>
           <Link to="/secondpage">Second Page</Link>
-        </header>
-
+        </header>*/}
         <main>
           <Route exact path="/" component={Test} />
           <Route exact path="/secondpage" component={Test2} />
