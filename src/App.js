@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Route, Link } from 'react-router-dom'
+import Test from './Test'
+import Test2 from './Test2'
+
+// import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
@@ -7,12 +11,14 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <Link to="/">Test</Link>
+          <Link to="/secondpage">Second Page</Link>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+
+        <main>
+          <Route exact path="/" component={Test} />
+          <Route exact path="/secondpage" component={Test2} />
+        </main>
       </div>
     );
   }
