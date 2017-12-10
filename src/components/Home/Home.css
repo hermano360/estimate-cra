@@ -1,0 +1,42 @@
+.c-home-body {
+  background-color: #F2E1B2;
+  min-height: 100vh;
+  overflow-y: scroll;
+}
+
+.c-home-logo {
+  width:60%;
+  max-width: 200px;
+  margin: 40px auto 30px;
+}
+
+.c-home-button-group {
+  margin-top: 20px;
+}
+
+.c-home-button {
+  width:30%;
+  font-size: 15px;
+  text-align: center;
+  background-color: rgb(180, 228, 28);
+  border: 2px solid #000;
+  border-radius: 20px;
+}
+
+.c-home-button-top {
+  margin: 0% 35% 5%;
+}
+
+.c-home-button-bottom{
+  margin: 0% 5%;
+}
+
+.c-home-gear{
+  width: 20%;
+  margin-left:70%;
+  padding-top: 40px;
+  text-align: center;
+}
+.c-home-gear-icon{
+  font-size: 30px;
+}

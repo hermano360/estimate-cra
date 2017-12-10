@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import actions from './redux/actions/actions'
+import actions from '../../redux/actions/actions'
 
-class Test extends Component {
+class Products extends Component {
   constructor(e){
     super(e)
     this.testDispatch = this.testDispatch.bind(this)
@@ -15,7 +15,7 @@ class Test extends Component {
     const {page} = this.props
     return (
       <div>
-        <h1>Home</h1>
+        <h1>Products.js</h1>
         <p>Welcome home!</p>
         <p>{page}</p>
         <p onClick={this.testDispatch}>Test Dispatch</p>
@@ -25,14 +25,10 @@ class Test extends Component {
 }
 
 
-
-
-
-// importing the above object into the properties of the component
 export default connect(
   (state)=>{
     return {
       page: state.page
     }
   }
-)(Test)
+)(Products)
