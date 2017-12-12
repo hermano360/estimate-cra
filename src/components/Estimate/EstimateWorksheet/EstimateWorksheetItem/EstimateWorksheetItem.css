@@ -42,6 +42,7 @@
   overflow-y: scroll;
 }
 .c-estimators-worksheet-list-item-desc-input {
+  width:100%;
   height:100%;
 }
 

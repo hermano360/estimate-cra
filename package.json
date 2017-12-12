@@ -3,7 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "docxtemplater": "^3.1.12",
+    "jszip": "^3.1.5",
     "moment": "^2.19.3",
+    "mongodb": "2.2.33",
+    "nodemailer": "^4.4.1",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-bootstrap": "^0.31.5",
@@ -17,7 +21,8 @@
     "react-select": "^1.1.0",
     "react-toggle": "^4.0.2",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "superagent": "^3.8.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -25,5 +30,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy" : "http://localhost:3001"
+  "proxy" : "http://localhost:8000"
 }

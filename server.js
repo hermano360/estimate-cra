@@ -21,7 +21,7 @@ app.use((req, res, next) => {
   }
 })
 
-app.use(express.static(path.join(__dirname, '/public')))
+app.use(express.static(path.join(__dirname, '/build')))
 
 app.use(bodyParser.json())
 
@@ -76,6 +76,15 @@ app.post('/products', (req, res) => {
   MongoClient.connect('mongodb://hermano360:f00tball@ds137090.mlab.com:37090/meadowlark', (err, db) => {
     db.collection('proProducts').find({'keycode': {$in: req.body.products}}, { _id: 0 }).toArray((err, products) => {
       res.send(products)
+      db.close()
+    })
+  })
+})
+
+app.get('/availableQuoteNumbers', (req, res) => {
+  MongoClient.connect('mongodb://hermano360:f00tball@ds137090.mlab.com:37090/meadowlark', (err, db) => {
+    db.collection('proQuotes').find({}, { _id: 0, quoteNumber: 1 }).sort({ quoteNumber: 1 }).toArray((err, availableQuoteNumbers) => {
+      res.send(availableQuoteNumbers)
       db.close()
     })
   })

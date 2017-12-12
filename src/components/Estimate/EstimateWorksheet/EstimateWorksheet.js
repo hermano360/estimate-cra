@@ -10,41 +10,61 @@ import './EstimateWorksheet.css'
 class EstimateWorksheet extends Component {
   constructor(e){
     super(e)
-    this.handleCategorySelect = this.handleCategorySelect.bind(this)
   }
 
   generateCategorySelect(categories){
     return categories.map((category)=>{
-      return {value: category, label: category}
+      return {value: category.category, label: category.category}
     })
   }
   generateProductSelect(products){
     return products.map((product)=>{
-      return {value: product, label: product}
+      return {value: product.keycode, label: product.keycode}
     })
   }
-  handleCategorySelect(e){
-    console.log(e)
-  }
-  handleProductSelect(e){
-    console.log(e)
+  generateEstimateWorksheet(shoppingCart){
+    return shoppingCart.map((shoppingCartItem,i)=>{
+      const {keycode, group} = shoppingCartItem
+      return (
+        <EstimateWorksheetItem
+          key={`${keycode}-${group}-${i}`}
+          item={shoppingCartItem}
+          itemNumber={i+1}
+        />)
+    })
   }
 
+  handleCategorySelect(categorySelected){
+    const {categories, products, quoteNumber, dispatch} = this.props
+
+    // generates the list of keycodes associated with the category
+    const desiredKeycodes = categories.filter((category)=>{
+      return category.category === categorySelected
+    })[0].products
+
+    // combs through the products list to find the complete items
+    const shoppingCartItems = products.filter((product)=>{
+      return desiredKeycodes.includes(product.keycode)
+    })
+
+    dispatch(actions.addToShoppingCart(shoppingCartItems, quoteNumber))
+  }
+
+  handleProductSelect(productSelected){
+    const {products, quoteNumber, dispatch} = this.props
+
+    const shoppingCartItem = products.filter((product)=>{
+      return product.keycode === productSelected
+    })
+
+    dispatch(actions.addToShoppingCart(shoppingCartItem, quoteNumber))
+  }
+
+
+
   render() {
-    const {categories, products} = this.props
-    const sampleItem = {
-      group: 'Moulding',
-      keycode: 'Base1',
-      labor: '2.00',
-      number: 1,
-      quantity: 5,
-      sku: '686-985',
-      specifications: `Supply Labor And Material For Installation Of Single Piece 3/8" X 2 1/4" Streamline Primed Base Moulding Along Baseboard Area.`,
-      supplier: 'Home Depot',
-      template: '',
-      totalMaterial: '0.55',
-      uom: 'ft'
-    }
+    const {categories, products, shoppingCart} = this.props
+
     return (
       <div className="c-estimators-worksheet-body">
         <div className="c-estimators-worksheet-title">Estimators Worksheet</div>
@@ -80,11 +100,8 @@ class EstimateWorksheet extends Component {
             <span className="c-estimators-worksheet-list-header c-estimators-worksheet-list-lbr">Lbr</span>
             <span className="c-estimators-worksheet-list-header c-estimators-worksheet-list-x">x</span>
           </span>
-          <EstimateWorksheetItem item={sampleItem}/>
-          <EstimateWorksheetItem item={sampleItem}/>
+          {this.generateEstimateWorksheet(shoppingCart)}
         </div>
-
-
       </div>
     );
   }
@@ -94,7 +111,9 @@ export default connect(
   (state)=>{
     return {
       categories: state.categories,
-      products: state.products
+      products: state.products,
+      quotes: state.quotes,
+      quoteNumber: state.quoteNumber
     }
   }
 )(EstimateWorksheet)

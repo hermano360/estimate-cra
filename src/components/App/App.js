@@ -4,10 +4,17 @@ import Home from '../Home/Home'
 import Estimate from '../Estimate/Estimate'
 import PhoneList from '../PhoneList/PhoneList'
 import Products from '../Products/Products'
+import request from 'superagent'
 
 import './App.css';
 
 class App extends Component {
+  constructor(e){
+    super(e)
+  }
+  componentWillMount(){
+
+  }
   render() {
     return (
       <div className="App">

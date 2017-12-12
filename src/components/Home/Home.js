@@ -5,6 +5,7 @@ import logo from '../../assets/images/ezestimator_logo.png'
 import GoGear from 'react-icons/lib/go/gear'
 import Settings from './Settings/Settings'
 
+
 import './Home.css'
 
 import { Button } from 'react-bootstrap'

@@ -18,3 +18,7 @@
 .c-sidebar-modal .modal-body{
   height: 60vh;
 }
+
+.c-sidebar-modal .modal-dialog {
+    width: 60%;
+}
