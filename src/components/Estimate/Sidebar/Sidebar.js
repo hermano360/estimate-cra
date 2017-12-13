@@ -19,22 +19,44 @@ class Sidebar extends Component {
     quote.shoppingCart.forEach((item)=>{
       total += item.quantity *  parseFloat(item.labor.substr(1)) + item.quantity *  parseFloat(item.totalMaterial.substr(1))
     })
-    console.log(total)
+    return total
+  }
+  removeEmptyItems(quote){
+    return {
+      ...quote,
+      shoppingCart: [...quote.shoppingCart].filter((item)=>{
+        return item.quantity !== 0
+      })
+    }
   }
   handleEstimate(){
     const {estimateReady} = this.state
     const {quotes, quoteNumber} = this.props
-    this.setState({
-      estimateReady: !estimateReady
-    })
     if(estimateReady){
-
+      console.log('generating document')
     } else {
-      this.generateTotal(quotes[quoteNumber])
-      // request
-      //   .post('/generateDocument')
 
-
+      let nonEmptyQuote = this.removeEmptyItems(quotes[quoteNumber])
+      console.log(nonEmptyQuote)
+      if(nonEmptyQuote.shoppingCart.length > 0) {
+        request
+          .post('/generateDocument')
+          .send({
+            quoteInformation: nonEmptyQuote,
+            total: this.generateTotal(quotes[quoteNumber])
+          })
+          .then(res=>{
+            console.log(res)
+            this.setState({
+              estimateReady: !estimateReady
+            })
+          })
+          .catch(err=>{
+            console.log(err)
+          })
+        } else {
+          console.log('please entery a quantity for at least one item')
+        }
     }
   }
   handleDuplicate(){

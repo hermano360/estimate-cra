@@ -70,7 +70,8 @@ export const QuotesReducer = (state = [], action) => {
       let emptyShoppingCart = action.shoppingCart.map((item)=>{
         return {
           ...item,
-          quantity: 0
+          quantity: 0,
+          template: action.template
         }
       })
       return {

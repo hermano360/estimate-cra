@@ -38,6 +38,14 @@ class Estimate extends Component {
     })
   }
 
+  generateTotal(quote){
+    let total = 0
+    quote.shoppingCart.forEach((item)=>{
+      total += item.quantity *  parseFloat(item.labor.substr(1)) + item.quantity *  parseFloat(item.totalMaterial.substr(1))
+    })
+    return total
+  }
+
   retrieveExternalCategories(){
     const {dispatch} = this.props
     const currentTime = new Date().getTime()
@@ -209,7 +217,11 @@ class Estimate extends Component {
         <div className="c-estimate-action-button c-estimate-save"
           onClick={()=>console.log('save to database')}
         >Save</div>
-        <div className={`c-estimate-action-button c-estimate-total ${showTotal ? '' : 'hidden'}`} >Total</div>
+        <div className={`c-estimate-action-button c-estimate-total ${showTotal ? '' : 'hidden'}`} >
+        Total
+        <br/>
+        ${this.generateTotal(quotes[quoteNumber]).toFixed(2)}
+        </div>
       </div>
     );
   }

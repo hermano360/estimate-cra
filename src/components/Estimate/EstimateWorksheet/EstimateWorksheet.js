@@ -47,7 +47,7 @@ class EstimateWorksheet extends Component {
       return desiredKeycodes.includes(product.keycode)
     })
 
-    dispatch(actions.addToShoppingCart(shoppingCartItems, quoteNumber))
+    dispatch(actions.addToShoppingCart(shoppingCartItems, quoteNumber, categorySelected))
   }
 
   handleProductSelect(productSelected){
@@ -57,7 +57,7 @@ class EstimateWorksheet extends Component {
       return product.keycode === productSelected
     })
 
-    dispatch(actions.addToShoppingCart(shoppingCartItem, quoteNumber))
+    dispatch(actions.addToShoppingCart(shoppingCartItem, quoteNumber, ""))
   }
 
 

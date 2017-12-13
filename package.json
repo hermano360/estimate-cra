@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "docxtemplater": "^3.1.12",
-    "jszip": "^3.1.5",
+    "jszip": "2.6.1",
     "moment": "^2.19.3",
     "mongodb": "2.2.33",
     "nodemailer": "^4.4.1",
@@ -30,5 +30,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy" : "http://localhost:8000"
+  "proxy": "http://localhost:8000"
 }

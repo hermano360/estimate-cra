@@ -79,11 +79,12 @@ const QuoteActions = {
       quotes
     }
   },
-  addToShoppingCart: (shoppingCart, quoteNumber) => {
+  addToShoppingCart: (shoppingCart, quoteNumber, template) => {
     return {
       type: "ADD_TO_SHOPPING_CART",
       shoppingCart,
-      quoteNumber
+      quoteNumber,
+      template
     }
   },
   removeFromShoppingCart: (itemNumber, quoteNumber) => {
